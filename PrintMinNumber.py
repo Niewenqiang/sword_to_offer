@@ -26,3 +26,19 @@ class Solution:
 
 s = Solution()
 print s.PrintMinNumber([3, 23, 321, 1, 2, 12])
+
+
+class Solution:
+    def PrintMinNumber(self, numbers):
+        li = self.qsort(numbers)
+        return "".join([str(i) for i in li])
+
+    def comp(self,a,b):
+        if str(a) + str(b) < str(b) + str(a):
+            return True
+        else:
+            return False
+    def qsort(self,n):
+        if len(n) <= 1:
+            return n
+        return self.qsort([i for i in n[1:] if self.comp(i,n[0])]) + [n[0]] + self.qsort([i for i in n[1:] if not self.comp(i,n[0])])
