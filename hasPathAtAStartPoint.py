@@ -23,30 +23,63 @@
 # 一直重复这个过程，直到路径字符串上所有字符都在矩阵中找到格式的位置（此时str[pathLength] == '\0'）。
 
 
+# class Solution:
+#     def hasPath(self, matrix, rows, cols, path):
+#         for i in range(rows):
+#             for j in range(cols):
+#                 if matrix[i*cols + j] == path[0]:
+#                     if self.find_path(matrix, rows, cols, path[1:], i, j):
+#                         return True
+
+#     def find_path(self, matrix, rows, cols, path, i, j):
+#         if not path:
+#             return True
+#         matrix[i*cols + j] = 0
+#         if j+1 < cols and matrix[i*cols+j+1] == path[0]:
+#             return self.find_path(matrix, rows, cols, path[1:], i, j+1)
+#         elif j-1 >= 0 and matrix[i*cols+j-1] == path[0]:
+#             return self.find_path(matrix, rows, cols, path[1:], i, j-1)
+#         elif i+1 < rows and matrix[(i+1)*cols+j] == path[0]:
+#             return self.find_path(matrix, rows, cols, path[1:], i+1, j)
+#         elif i-1 >= 0 and matrix[(i-1)*cols+j] == path[0]:
+#             return self.find_path(matrix, rows, cols, path[1:], i-1, j)
+#         else:
+#             return False
+
 class Solution:
-    def hasPath(self, matrix, rows, cols, path):
+    def hasPath(self , matrix , word):
+        rows = len(matrix)
+        cols = len(matrix[0])
         for i in range(rows):
             for j in range(cols):
-                if matrix[i*cols + j] == path[0]:
-                    if self.find_path(matrix, rows, cols, path[1:], i, j):
+                if matrix[i][j] == word[0]:
+                    tmp = [[True] * cols for _ in range(rows)]
+                    if self.find_in(matrix,i,j,rows,cols,word[1:],tmp):
                         return True
+        return False
 
-    def find_path(self, matrix, rows, cols, path, i, j):
-        if not path:
+    def find_in(self,matrix,i,j,rows,cols,word,tmp):
+        if word == "":
             return True
-        matrix[i*cols + j] = 0
-        if j+1 < cols and matrix[i*cols+j+1] == path[0]:
-            return self.find_path(matrix, rows, cols, path[1:], i, j+1)
-        elif j-1 >= 0 and matrix[i*cols+j-1] == path[0]:
-            return self.find_path(matrix, rows, cols, path[1:], i, j-1)
-        elif i+1 < rows and matrix[(i+1)*cols+j] == path[0]:
-            return self.find_path(matrix, rows, cols, path[1:], i+1, j)
-        elif i-1 >= 0 and matrix[(i-1)*cols+j] == path[0]:
-            return self.find_path(matrix, rows, cols, path[1:], i-1, j)
-        else:
-            return False
-
-
-s = Solution()
-# print s.hasPath([['a', 'b', 'c', 'e'], ['s', 'f', 'c', 's'], ['a', 'd', 'e', 'e']], 3, 4, 'cced')
-print s.hasPath(['a', 'b', 'c', 'e', 's', 'f', 'c', 's', 'a', 'd', 'e', 'e'], 3, 4, 'cced')
+        tmp[i][j] = False
+        if i+1 < rows and matrix[i+1][j] == word[0] and tmp[i+1][j]:
+            if self.find_in(matrix,i+1,j,rows,cols,word[1:],tmp):
+                return True
+        if i-1 >=0 and matrix[i-1][j] == word[0] and tmp[i-1][j]:
+            if self.find_in(matrix,i-1,j,rows,cols,word[1:],tmp):
+                return True
+        if j+1 < cols and matrix[i][j+1] == word[0] and tmp[i][j+1]:
+            if self.find_in(matrix,i,j+1,rows,cols,word[1:],tmp):
+                return True
+        if j-1 >=0 and matrix[i][j-1] == word[0]and tmp[i][j-1]:
+            if self.find_in(matrix,i,j-1,rows,cols,word[1:],tmp):
+                return True
+        tmp[i][j] = True
+        return False
+    
+s = Solution()        
+print s.hasPath([['A','B','C'],['B','E','D'],['F','G','G']],"ABCDEBF")        
+        
+# s = Solution()
+# # print s.hasPath([['a', 'b', 'c', 'e'], ['s', 'f', 'c', 's'], ['a', 'd', 'e', 'e']], 3, 4, 'cced')
+# print s.hasPath(['a', 'b', 'c', 'e', 's', 'f', 'c', 's', 'a', 'd', 'e', 'e'], 3, 4, 'cced')
