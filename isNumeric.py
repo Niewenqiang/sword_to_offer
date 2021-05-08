@@ -12,6 +12,8 @@ class Solution:
         isAllowE = True
         for i in range(len(s)):
             if s[i] in "+-" and (i == 0 or s[i - 1] in "eE") and i < len(s) - 1:
+                if s[i+1] in "eE":
+                    return False
                 continue
             elif isAllowDot and s[i] == ".":
                 isAllowDot = False
