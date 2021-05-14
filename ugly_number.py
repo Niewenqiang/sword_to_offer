@@ -29,6 +29,26 @@ class Solution:
             if res[t5] * 5 == res[i]:
                 t5 += 1
         return res[-1]
+    
+class Solution:
+    def GetUglyNumber_Solution(self, index):
+        if index <= 1:
+            return index
+        res = [1]
+        t2 = 0
+        t3 = 0
+        t5 = 0
+        i = 1
+        while i < index:
+            res.append(min(res[t2] * 2,res[t3] * 3,res[t5] *5))
+            if res[i] == res[t2] * 2:
+                t2+=1
+            if res[i] == res[t3] * 3:
+                t3+=1
+            if res[i] == res[t5] * 5:
+                t5+=1
+            i +=1
+        return res[-1]
 
 
 s = Solution()
