@@ -9,6 +9,8 @@
 # 我们也可以先让把长的链表的头砍掉，让两个链表长度相同，这样，同时遍历也能找到公共结点。
 # 此时，时间复杂度O(m+n)，空间复杂度为O(MAX(m,n))。
 
+# https://blog.csdn.net/qq_36243414/article/details/90452723
+
 
 class ListNode:
     def __init__(self, x):
