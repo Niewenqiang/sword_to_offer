@@ -66,6 +66,16 @@ class Solution:
             self.Mirror(root.right)
         return root
 
+    
+    
+class Solution:
+    def Mirror(self , pRoot ):
+        if pRoot == None:
+            return None
+        pRoot.left,pRoot.right = pRoot.right,pRoot.left
+        self.Mirror(pRoot.left)
+        self.Mirror(pRoot.right)
+        return pRoot
 
 s = Solution()
 s.add(0)
