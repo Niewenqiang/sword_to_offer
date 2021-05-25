@@ -65,10 +65,6 @@ class Solution:
             return False
         if not pRoot:
             return True
-        if not pRoot.left and pRoot.right:
-            return False
-        if not pRoot.right and pRoot.left:
-            return False
         return isSame(pRoot.right, pRoot.left)
 
 
