@@ -22,6 +22,20 @@ class Solution:
                 return i, s[i]
         return -1
 
+    
+# -*- coding:utf-8 -*-
+class Solution:
+    def FirstNotRepeatingChar(self, s):
+        strdict = {}
+        for i in s:
+            if strdict.has_key(i):
+                strdict[i] += 1
+            else:
+                strdict[i] = 1
+        for i in range(len(s)):
+            if strdict[s[i]]== 1:
+                return i
+        return -1
 
 s = Solution()
 print s.FirstNotRepeatingChar('baccb')
