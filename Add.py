@@ -17,6 +17,21 @@ class Solution:
             num1 = temp & 0xFFFFFFFF
         return num1 if num1 >> 31 == 0 else num1 - 4294967296
 
-
+    
+# -*- coding:utf-8 -*-
+class Solution:
+    def Add(self, num1, num2):
+        while num2:
+            res = (num1 ^ num2) & 0xffffffff
+            move = ((num1 & num2) << 1) & 0xffffffff
+            num1 = res
+            num2 = move
+        if num1 <= 0x7fffffff:
+            res = num1
+        else:
+            res = ~(num1 ^ 0xffffffff)
+        return res
+    
+    
 s = Solution()
 print s.Add(1, -2)
