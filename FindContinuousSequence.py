@@ -21,3 +21,21 @@ class Solution:
 
 s = Solution()
 print s.FindContinuousSequence(100)
+
+
+
+import math
+class Solution:
+    def FindContinuousSequence(self, tsum):
+        res = []
+        for i in range(2, int(math.sqrt(2 * tsum)) + 1):
+            if i % 2 == 1 and tsum % i == 0 and tsum // i - i // 2 > 0:
+                res.append([i for i in range(tsum // i - i // 2, tsum // i + i // 2 + 1)])
+            if i % 2 == 0 and tsum % i == i // 2 and tsum // i - i // 2 + 1 > 0:
+                res.append([i for i in range(tsum // i - i // 2 + 1, tsum // i + i // 2 + 1)])
+        return sorted(res)
+
+    
+#思路
+# 首先确定遍历范围，其中X满足条件：(1+X)X = 200
+# 然后根据x是奇还是偶确定list里面的数
