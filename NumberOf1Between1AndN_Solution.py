@@ -36,5 +36,6 @@ class Solution:
 s = Solution()
 print s.NumberOf1Between1AndN_Solution(3333)
 
-
+# 挨个计算个十百千万位1的数量，将数字分两部分，高位和低位。一共三种情况。
+# 当该位的数等于0 等于1 大于1时，有三种不同情况
 
