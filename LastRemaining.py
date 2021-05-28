@@ -16,3 +16,8 @@ class Solution:
 
 s = Solution()
 print s.LastRemaining_Solution(13, 4)
+
+
+#https://blog.csdn.net/dongyanwen6036/article/details/84892590
+    
+#由此，得出公式f(n)=(f(n-1)+m)%n,f(1)=0.
