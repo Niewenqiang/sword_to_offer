@@ -29,3 +29,16 @@ class Solution:
 s = Solution()
 print s.IsPopOrder([1, 2, 3, 4, 5], [4, 3, 5, 1, 2])
 print s.IsPopOrder([1, 2, 3, 4, 5], [4, 5, 3, 2, 1])
+
+
+class Solution:
+    def IsPopOrder(self, pushV, popV):
+        tmp = []
+        for i in pushV:
+            tmp.append(i)
+            while len(tmp) > 0 and tmp[-1] == popV[0]:
+                tmp.pop()
+                popV.pop(0)
+        return len(tmp) == 0
+    
+    
