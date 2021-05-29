@@ -36,3 +36,23 @@ class Solution:
 
 s = Solution()
 print s.str_2_int('+100')
+
+
+
+class Solution:
+    def StrToInt(self, string):  # 将符合规范的数字字符串转为数字
+        res = 0
+        if len(string) ==0 :
+            return res
+        for i in range(len(string)):
+            if i == 0 and string[i] in ["-","+"]:
+                continue
+            if ord(string[i]) >= 48 and ord(string[i])<= 57:
+                res += (ord(string[i])-48)*(10**(len(string)-i-1))
+            else:
+                return 0
+        if string[0] == "-" :
+            return res*(-1)
+        return res
+
+
